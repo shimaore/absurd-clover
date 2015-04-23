@@ -1,0 +1,16 @@
+{
+  "name": "absurd-clover",
+  "version": "1.0.6",
+  "description": "CDR statistical analysis for CCNQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Stéphane Alnet <stephane@shimaore.net> (http://stephane.shimaore.net/)",
+  "license": "Unlicense (http://unlicense.org/)",
+  "devDependencies": {
+    "coffee-script": "^1.9.2",
+    "couchapp": "^0.11.0",
+    "teacup": "^1.2.0"
+  }
+}
