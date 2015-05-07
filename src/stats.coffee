@@ -78,12 +78,12 @@ ccnq3.graph_hourly = (timezone) ->
     dataType: 'json'
     url: '_view/account_monitor'
     timeout: timeout*1000
-    startkey: ["#{(new Date(now-366*24*3600*1000)).toISOString()[0..9]}"]
+    startkey: JSON.stringify ["#{(new Date(now-366*24*3600*1000)).toISOString()[0..9]}"]
     data:
       group_level: 2
       stale: 'update_after'
-  .fail ->
-    $('#flot').text 'The query failed, sorry. (Please report this problem.)'
+  .fail (j,text,error) ->
+    $('#flot').text "The query failed, sorry. Status: #{text}. Error: #{error}. (Please report this problem.)"
   .done (json) ->
     for row in json.rows
       [hour,direction] = row.key
