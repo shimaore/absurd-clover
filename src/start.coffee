@@ -2,7 +2,7 @@ console.log "Initializing."
 ccnq3 = window.ccnq3 ?= {}
 timezoneJS.timezone.zoneFileBasePath = 'tz'
 timezoneJS.timezone.init()
-timezone = 'US/Central' # FIXME this should be provided somewhere else!!
+timezone = 'Europe/Paris' # FIXME this should be provided somewhere else!!
 $(document).ready =>
   console.log "Starting."
   graph_hourly = =>
