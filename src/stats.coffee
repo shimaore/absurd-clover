@@ -70,16 +70,19 @@ ccnq3.graph_hourly = (timezone) ->
     label: 'Outbound CSR (%)'
   ###
 
-  $('#flot').text 'Please wait, retrieving data.'
+  timeout = 120
+  $('#flot').text "Please wait, retrieving data, timing out after #{timeout} seconds."
   $.ajax
     type: 'GET'
     accepts: 'application/json'
     dataType: 'json'
     url: '_view/account_monitor'
-    timeout: 120*1000
+    timeout: timeout*1000
     data:
       group_level: 2
       stale: 'update_after'
+  .fail ->
+    $('#flot').text 'The query failed, sorry. (Please report this problem.)'
   .done (json) ->
     for row in json.rows
       [hour,direction] = row.key
