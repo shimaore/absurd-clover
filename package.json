@@ -1,6 +1,6 @@
 {
   "name": "absurd-clover",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CDR statistical analysis for CCNQ",
   "main": "index.js",
   "scripts": {
