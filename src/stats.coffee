@@ -76,7 +76,7 @@ ccnq3.graph_hourly = (timezone) ->
     accepts: 'application/json'
     dataType: 'json'
     url: '_view/account_monitor'
-    timeout: 60*1000
+    timeout: 120*1000
     data:
       group_level: 2
       stale: 'update_after'
