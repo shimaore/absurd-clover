@@ -2,6 +2,13 @@ ccnq3 = window.ccnq3 ?= {}
 ccnq3.graph_hourly = (timezone) ->
   console.log "graph_hourly #{timezone}"
 
+  timeout = 120
+  days_back = 180
+
+  second = 1000
+  hour = 3600*second
+  day = 24*hour
+
   # Flot
   now = Date.now()
   options =
@@ -17,7 +24,7 @@ ccnq3.graph_hourly = (timezone) ->
       timezone: timezone
       timeformat: "%Y-%m-%d %H"
       minTickSize: [1,"hour"]
-      min: now - 24*3600*1000
+      min: now - 1*day
       max: now
     yaxis:
       min: 0
@@ -70,7 +77,6 @@ ccnq3.graph_hourly = (timezone) ->
     label: 'Outbound CSR (%)'
   ###
 
-  timeout = 120
   $('#flot').text "Please wait, retrieving data, timing out after #{timeout} seconds."
   $.ajax
     type: 'GET'
@@ -81,7 +87,7 @@ ccnq3.graph_hourly = (timezone) ->
     data:
       group_level: 2
       stale: 'update_after'
-      startkey: JSON.stringify ["#{(new Date(now-366*24*3600*1000)).toISOString()[0..9]}"]
+      startkey: JSON.stringify ["#{(new Date(now-days_back*day)).toISOString()[0..9]}"]
   .fail (j,text,error) ->
     $('#flot').text "The query failed, sorry. Status: #{text}. Error: #{error}. (Please report this problem.)"
   .done (json) ->
